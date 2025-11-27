@@ -4,23 +4,45 @@
 #include "User.h"
 #include "Post.h"
 
+using namespace std;
+
+// ============================================================================
+// DATABASE CLASS
+// ============================================================================
+// Manages loading and saving user and post data from/to CSV files
+// Provides utility functions for ID generation and CSV parsing
+
 class Database {
 public:
-    Database(const std::string &dataDir);
+    // Constructor: initialize with data directory path
+    Database(const string &dataDir);
+
+    // Load users and posts from CSV files
     bool load();
+
+    // Save users and posts to CSV files
     bool save();
 
-    std::vector<User> users;
-    std::vector<Post> posts;
+    // Data storage
+    vector<User> users;
+    vector<Post> posts;
 
+    // Generate next available user ID
     int nextUserId() const;
+
+    // Generate next available post ID
     int nextPostId() const;
 
 private:
-    std::string dir;
-    std::string usersPath() const;
-    std::string postsPath() const;
-    // simple CSV helpers
-    static std::vector<std::string> split(const std::string &s, char d);
-    static std::string join(const std::vector<std::string> &parts, char d);
+    string dir;
+
+    // Get full path to users CSV file
+    string usersPath() const;
+
+    // Get full path to posts CSV file
+    string postsPath() const;
+
+    // CSV helper functions
+    static vector<string> split(const string &s, char d);
+    static string join(const vector<string> &parts, char d);
 };

@@ -2,11 +2,21 @@
 #include <string>
 #include "LinkedList.h"
 
-struct User {
-    int id;
-    std::string name;
-    std::string bio;
-    LinkedList<int> friends; // store friend user ids
+using namespace std;
 
-    User(): id(0) {}
+// ============================================================================
+// USER STRUCT
+// ============================================================================
+// Represents a social media user with profile information and friend list
+
+struct User {
+    int id;                      // Unique user identifier
+    string username;             // Login username (unique)
+    string name;                 // Display name
+    string bio;                  // User biography
+    string password;             // Password (plain text for lab)
+    LinkedList<int> friends;     // LinkedList of friend user IDs
+
+    // Default constructor
+    User() : id(0) {}
 };
